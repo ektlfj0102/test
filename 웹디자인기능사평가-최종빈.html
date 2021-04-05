@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Chapter 04-04 - jQuery 최고의 교과서</title>
+<link rel="stylesheet" href="./css/normalize.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<style>
+
+   *{
+   	box-sizing: border-box;
+    font-family: 돋움체,Arial;
+   }
+   header{
+   	margin: 0 auto;
+   	width: 863px;
+   }
+   #menu{
+   	float: right;
+   	width: 280px;
+   	height: 30px;
+   	margin-right: 3%;
+   	
+   	padding-left: 20px;
+   }
+   #menu>h1>a{
+   	font-size: 12px;
+   	font-family: Arial;
+   	color: black;
+   	float: left;
+   	text-align: center;
+   	width: 80px;
+   	border-right: 1px solid black;
+
+   }
+   #menu>h1>a:link,#menu>h1>a:visited,#menu>h1>a:active{
+   	text-decoration: none;
+   }
+   #menu>h1:last-child{
+   	border: none; 
+   }
+   #menu>h1>a:hover{
+   	color: #999;
+   }
+   #logo{
+   	float: left;
+    padding-top: 20px;
+    margin-left: 3%;
+
+   }
+   #logo>#logo_image{
+   	width:60px;
+   	height: 60px;
+   	background: url(images/logo-cjb.png);
+   	background-size: 100% 100%;
+   	float: left;
+   	margin-right: 5px;
+   }
+   #logo>h1{
+   	font-size: 14px;
+   	float: left;
+   	font-family: Arial;
+
+   }
+   #logo>p{
+   	font-size: 10px;
+   	width: 200px;
+   	height: 20px;
+   	font-family: Arial;
+   	text-align: center;
+   }
+   ul{
+   	list-style: none;
+   	padding: 0;
+   	margin: 0;
+   }
+   nav{
+   	min-width: 100%;
+   	height: 50px;
+   	clear: both;
+   	background: #013567;
+   	text-align: center;
+   	line-height: 50px;
+  
+   }
+   nav>ul{
+   	width: 863px;
+   	margin: 0 auto;
+    text-align: center;
+   }
+   nav>ul>li>a{
+   	float: left;
+   	font-size: 12px;
+   	font-family: Arial;
+   	color: white;
+   	margin: 0 20px 0 20px;
+   	text-align: center;
+   	text-decoration: none;
+   	
+   }
+   nav>ul>li>a:visited,nav>ul>li>a:active{
+   	text-decoration: none;
+   }
+   nav>ul>li>a:hover{
+   	color: #cdff02;
+   }
+   #banner{
+   	clear: both;
+   	width: 863px;
+   	height: 302px;
+   	margin: 10px auto;
+   	overflow: hidden; 
+   	position: relative;
+
+   }
+   #banner>#slider>img{
+   	width: 863px;
+   	height: 302px;
+   	
+   }
+   #slider{
+   	width: 3500px;
+   	height: 302px;
+   	position: absolute;
+   	left: 0;
+   	top: 0;
+
+   }
+   section,footer{
+   	width: 863px;
+   	margin: 0 auto;
+   }
+   section>#progex{
+   	width: 863px;
+   	height: 20px;
+   	background: #013567;
+   }
+   #progex>h2{
+    background: white;
+    width: 180px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #013567;
+    font-family: 돋움체;
+   }
+   #progex>h2>span{
+   	color: skyblue;
+   }
+   #prog{
+   	width: 500px;
+   	height: 180px;
+   	float: left;
+   	padding-top: 40px;
+   	padding-left: 50px;
+   	border-radius: 40px;
+   	border:4px solid #999;
+   	margin-top: 40px; 
+   }
+   #prog>div{
+   	float: left;
+   	width: 100px;
+   	height: 60px;
+    padding-left: 0px;
+    font-size: 11px;
+    
+   }
+   #prog>div>p{
+   	width: 110px;
+    padding-left: -10px;
+   }
+   #prog>div>img{
+   	margin-left: 15px;
+   }
+   
+   #course{
+   	width: 500px;
+   	height: 250px;
+   	float: left;
+    border-radius: 40px;
+   	border:4px solid #999;
+   	margin-top: 20px;
+   }
+   #course{
+   	padding-left: 20px;
+   	position: relative;
+   }
+   #course>h2{
+   	margin-top: 50px;
+   	
+   	font-size: 12px;
+   	font-family: 돋움체;
+   	color: #013567;
+   	display: inline-block;
+   }
+   #course>h3{
+   	color: #f4990c;
+   	display: inline-block;
+   	font-size: 12px;
+   }
+   #course>button{
+   	background: #777;
+   	color: white;
+   	display: inline-block;
+   }
+   #course>p{
+   	display: inline-block;
+   	font-size: 12px;
+   }
+   #course>img{
+   	float: right;
+   	width: 200px;
+   	height: 120px;
+   	margin-top: -180px;
+   	margin-right: 10px;
+   }
+
+   #course>.num{
+   	position: absolute;
+   	top: 250px;
+   	left: 200px;
+   	height: 86px;
+   	width: 58px;
+   }
+
+
+
+
+  #course2{
+   	width: 500px;
+   	height: 250px;
+   	float: left;
+    border-radius: 40px;
+   	border:4px solid #999;
+   	margin-top: 20px;
+   }
+   #course2{
+   	padding-left: 20px;
+   	position: relative;
+   }
+   #course2>h2{
+   	margin-top: 50px;
+   	
+   	font-size: 12px;
+   	font-family: 돋움체;
+   	color: #013567;
+   	display: inline-block;
+   }
+   #course2>h3{
+   	color: #f4990c;
+   	display: inline-block;
+   	font-size: 12px;
+   }
+   #course2>button{
+   	background: #777;
+   	color: white;
+   	display: inline-block;
+   }
+   #course2>p{
+   	display: inline-block;
+   	font-size: 12px;
+   }
+   #course2>img{
+   	float: right;
+   	width: 200px;
+   	height: 120px;
+   	margin-top: -180px;
+   	margin-right: 10px;
+   }
+   #course2>.num{
+   	position: absolute;
+   	top: 250px;
+   	left: 200px;
+   	height: 86px;
+   	width: 58px;
+   }
+
+
+
+
+
+
+   #hotprog{
+   	width: 350px;
+   	height: 300px;
+   	border-radius: 40px;
+   	border:10px solid #999;
+   	float: right;
+   	margin-top: -180px;
+   	padding: 15px;
+   	position: relative;
+   }
+   #hotprog>div>p{
+   	font-size: 12px;
+   }
+   #hotprog img{
+   	float: left;
+   	margin-right: 10px;
+
+   }
+   #hotprog h3{
+    font-size: 12px;
+    color: red;
+   }
+   #hotprog>p{
+   	position: absolute;
+   	top: -23px;
+   	left: 40px;
+   	background: white;
+   	font-size: 12px;
+   	font-family: Arial;
+   	font-weight: 600;
+   	color: #777;
+   }
+   #hotprog>p>span{
+   	color: #013567;
+   	font-weight: 600;
+   }
+   #photo{
+   	width: 300px;
+   	height: 100px;
+   	float: right;
+   	margin-top: 20px;
+
+   }
+   #photo>img{
+   	float: left;
+   	width: 190px;
+   	height: 80px;
+   	margin-right: 10px;
+   	margin-left: -30px;
+   	margin-top: 20px;	
+   }
+
+   #photo>div{
+   	width: 50px;
+   	height: 50px;
+   	border-radius: 50%;
+   	background: brown;
+   	line-height: 50px;
+   	float: left;
+   	text-align: center;
+   	margin-left: 20px;
+   }
+   #photo>div>a{
+   	color: white;
+    font-size: 12px;
+    font-weight: 600;
+
+   }
+   #photo>div>a:link,#photo>div>a:visited,#photo>div>a:active{
+   	text-decoration: none;
+   	color: #666;
+   }
+   #photo>div>a:hover{
+   	color: #06c;
+   }
+   #photo>h3{
+   	font-size: 12px;
+   	margin-left: 10px;
+   	width: 70px;
+   	display: inline-block;
+   	margin-top: 20px;
+   }
+   footer>#nav{
+   	width: 100%;
+   	height: 50px;
+   	margin-top: 500px;
+   
+   }
+   footer>#nav>ul{
+   	list-style: none;
+   	padding: 0;
+   	margin: 0;
+   	clear: both;
+    width: 100%;
+   }
+   footer>#nav>ul>li{
+   	float: left;
+   	padding-right: 10px;
+    border-right: 1px solid black;	
+   	margin: 10px;
+   	font-family: 돋움체;
+   	font-size: 12px;
+   }
+   address{
+   	width: 100%;
+   	height: 100px;
+   	margin-top: -30px;
+   	
+   }
+   address p,address img{
+   	float: right;
+   	font-size: 12px;
+   }
+   address img{
+   	width: 50px;
+   	height: 50px;
+   	
+   	margin-left: 30px;
+   }
+   address{
+   	font-style: normal;
+   }
+   #course2{
+   	display: none;
+   }
+   #course2.on{
+   	display: block;
+   }
+   #course.on2{
+   	display: none;
+   }
+
+   /*button>a:link,button>a:visited,button>a:active{
+   	text-decoration: none;
+   	color: #666;
+   }
+   button>a:hover{
+   	color: #06c;
+   }*/
+   footer>#nav>ul>li>a{
+   	text-align: center;
+   }
+   footer>#nav>ul>li>a:link,footer>#nav>ul>li>a:active,footer>#nav>ul>li>a:visited{
+   	text-decoration: none;
+   	color: #666;
+   }
+   footer>#nav>ul>li>a:hover{
+   	color: #06c;
+   }
+
+
+</style>
+<script src="jquery-ui.min.js"></script>
+
+<script>
+    $(function(){
+      var n=0;
+      var pos;
+      setInterval(function(){
+        n++;
+        pos=-868*n+"px";
+       
+       $("#slider").animate({left:pos},1000,function(){
+         if(n==3){
+         	n=0;
+         	pos=0;
+         	$("#slider").animate({left:0},0);
+         }
+
+       });
+      
+      },2000);
+      $("#course>button:first").css({background:"orange"});
+      $("#course>button:last").click(function(){
+        
+        $("#course").addClass("on2");
+        $("#course2").addClass("on");
+        $("#course2>button:last").css({background:"orange"});
+      });
+
+      $("#course2>button:first").click(function(){
+        
+        $("#course").removeClass("on2");
+        $("#course2").removeClass("on");
+        $("#course>button:first").css({background:"orange"});
+      });
+
+    });
+</script>
+</head>
+<body>
+  <header>
+  	<div id="menu">
+  		<h1><a href="#">LOGIN</a></h1>
+  		<h1><a href="#">JOIN</a></h1>
+  		<h1><a href="#">SITEMAP</a></h1>
+  	</div>
+  	<div id="logo">
+  		<div id="logo_image"></div>
+  		<h1>CHALLENGE KOREA</h1>
+  		<p>Chance, Change, Challenge</p>
+  	</div>
+  </header>
+  <nav>
+  	<ul>
+  		<li><a href="#">Outdoor Training</a></li>
+  		<li><a href="#">Indoor Training</a></li>
+  		<li><a href="#">Challenge Adventure</a></li>
+  		<li><a href="#">Event Program</a></li>
+  		<li><a href="#">Photo Gallery</a></li>
+  		<li><a href="#">Customer Center</a></li>
+  		<li><a href="#">About Us</a></li>
+  	</ul>
+  </nav>
+  <div id="banner">
+  	<div id="slider">
+  		<img src="images/keyvisual1.jpg" alt="">
+  		<img src="images/keyvisual2.jpg" alt="">
+  		<img src="images/keyvisual3.jpg" alt="">
+  		<img src="images/keyvisual1.jpg" alt="">
+  	</div>
+  </div>
+  <section>
+  	<div id="progex">
+  		<h2>챌린지코리아 <span>프로그램 안내</span></h2>
+  	</div>
+  	<div id="prog">
+  		<div><img src="images/banner1.jpg" alt=""><p>의식고도화훈련</p></div>
+  		<div><img src="images/banner2.jpg" alt=""><p>공동체베이스</p></div>
+  		<div><img src="images/banner3.jpg" alt=""><p>챌린지어드벤처</p></div>
+  		<div><img src="images/banner4.jpg" alt=""><p>스트레티지베이스</p></div>
+  	</div>
+  	<div id="course">
+  		<h2>챌린지코스</h2><br>
+  		<button>1</button>
+  		<button>2</button><br><br><br>
+  		<h3>현대성우코스</h3><br>
+  		<p>현대성우코스 리조트내에 자리잡고 있는 코스는 <br>서울근교의 이점과 
+           자연과 문명의 편안함속에서 도전과...
+  		</p>
+  		<img src="images/1.jpg" alt=""  class="num">
+  		<img src="images/tab1.jpg" alt="">
+  	</div>
+  	<div id="course2">
+  		<h2>챌린지코스</h2><br>
+  		<button>1</button>
+  		<button>2</button><br><br><br>
+  		<h3>용인코스</h3><br>
+  		<p>용인에 자리잡은 챌린지 어드벤스 코스는<br>한정된 공간을 최대한 이용할 수 있도록
+  			효율적으로 설계되었으며...
+  		</p>
+  		<img src="images/2.jpg" alt=""  class="num">
+  		<img src="images/tab2.jpg" alt="">
+  	</div>
+
+  	<div id="hotprog">
+  		<p><span>HOT</span>PROGRAM</p>
+  		<div id="ex1">
+  			<img src="images/banner_hot1.jpg" alt="">
+  			<h3>도미노훈련</h3>
+  			<p>2차대전중 어느한 국가가 패망하여 격파되었을때 그 여파로 인접국가들도 연쇄적으로 적화되어 </p>
+  		</div>
+  		<div id="ex2">
+  			<img src="images/banner_hot2.jpg" alt="">
+  			<h3>공동체베이스훈련</h3>
+  			<p>2차대전중 어느한 국가가 패망하여 격파되었을때 그 여파로 인접국가들도 연쇄적으로 적화되어 </p>
+  		</div>
+  		<div id="ex3">
+  			<img src="images/banner_hot3.jpg" alt="">
+  			<h3>충주훈련</h3>
+  			<p>2차대전중 어느한 국가가 패망하여 격파되었을때 그 여파로 인접국가들도 연쇄적으로 적화되어 </p>
+  		</div>
+  	</div>
+  	<div id="photo">
+  	    <img src="images/gallery1.jpg" alt="">
+  			
+  		<h3>포토갤러리</h3>
+
+  		<div><a href="#">GO</a></div>
+  	</div>
+  </section>
+  <footer>
+  	<div id="nav">
+  		<ul>
+  			<li><a href="#">챌린지 코리아 소개</a></li>
+  			<li><a href="#">클라이언트</a></li>
+  			<li><a href="#">인재채용</a></li>
+  			<li><a href="#">홍보자료</a></li>
+  			<li><a href="#">사업제휴 문의</a></li>
+  			<li><a href="#">Contact Us</a></li>
+  		</ul>
+  	</div>
+  	<br>
+  	<address>
+  		<img src="images/logo-cjb.png" alt=""> 
+  		<p>경기도 수원시 장안구 정자1동 동신아파트 210동 406호<br>
+           copyright 연세직업전문학교 아아아아아
+  		</p>
+        
+  	</address>
+  </footer>
+</body>
+</html>
